@@ -123,11 +123,11 @@ $db->query("INSERT INTO roles
 
 $db->query("INSERT INTO roles
                             (id, rolename)
-                            VALUES ('2','Editor')
+                            VALUES ('2','Manager')
                             ");
 $db->query("INSERT INTO roles
                             (id, rolename)
-                            VALUES ('3','Contributor')
+                            VALUES ('3','Editor')
                             ");
 
 $db->query("CREATE TABLE settings (
@@ -149,7 +149,8 @@ $db->query("CREATE TABLE IF NOT EXISTS page
                 use_name INT (1) DEFAULT '1',
                 use_desc INT (1) DEFAULT '1',
                 img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
-                counter INT(5) DEFAULT '1')
+                counter INT(5) DEFAULT '1',
+                content JSON)
                 ");
 
 $db->query("CREATE TABLE IF NOT EXISTS default_page
@@ -238,8 +239,9 @@ VALUES ('1','Mini Cms', 'Create your own website','Your footer text','en','damar
 ");
 
 $db->query("INSERT INTO page 
-(id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
-VALUES ('1','index', '1', 'default', '1', '1', '1', 'visual.jpg', '1')
+(id, page_name, no_mod, layout, header, use_name, use_desc, img, counter,content) 
+VALUES ('1','index', '1', 'default', '1', '1', '1', 'visual.jpg', '1',
+'[{\"name\":\"index\"},{\"block1_type\":\"t\",\"block1\":\"<p>This is your homepage.</p>\",\"block1_bg\":\"none\",\"block1_text\":\"none\"}]')
 ");
 
 $db->query("INSERT INTO default_page 
