@@ -149,8 +149,7 @@ $db->query("CREATE TABLE IF NOT EXISTS page
                 use_name INT (1) DEFAULT '1',
                 use_desc INT (1) DEFAULT '1',
                 img VARCHAR(255) NOT NULL DEFAULT 'visual.jpg',
-                counter INT(5) DEFAULT '1',
-                content JSON)
+                counter INT(5) DEFAULT '1')
                 ");
 
 $db->query("CREATE TABLE IF NOT EXISTS default_page
@@ -239,9 +238,8 @@ VALUES ('1','Mini Cms', 'Create your own website','Your footer text','en','damar
 ");
 
 $db->query("INSERT INTO page 
-(id, page_name, no_mod, layout, header, use_name, use_desc, img, counter,content) 
-VALUES ('1','index', '1', 'default', '1', '1', '1', 'visual.jpg', '1',
-'[{\"name\":\"index\"},{\"block1_type\":\"t\",\"block1\":\"<p>This is your homepage.</p>\",\"block1_bg\":\"none\",\"block1_text\":\"none\"}]')
+(id, page_name, no_mod, layout, header, use_name, use_desc, img, counter) 
+VALUES ('1','index', '1', 'default', '1', '1', '1', 'visual.jpg', '1')
 ");
 
 $db->query("INSERT INTO default_page 
