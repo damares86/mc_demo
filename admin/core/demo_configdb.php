@@ -96,6 +96,23 @@ if(!is_file('../core/site.php')){
 
 chmod('../core/site.php',0777);
 
+if(!is_dir("../inc/pages/")){
+  $oldmask = umask(0);
+  mkdir("../inc/pages/",0777,true);
+  umask($oldmask);
+}
+
+if(!is_file("../inc/pages/index.json")){
+  $file_handle = fopen("../inc/pages/index.json", 'w');
+  fwrite($file_handle, '[{"name":"index"},{"block1_type":"t","block1":"<p>This is your homepage.<\/p><p><br><\/p>","block1_bg":"none","block1_text":"none"}]');
+}
+
+$oldmask = umask(0);
+chmod("../inc/pages/index.json",0777);
+umask($oldmask);
+
+
+
 /////////////////////////////////////////////////////////////
 
 // create the db tables if not exists
