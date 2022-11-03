@@ -119,6 +119,13 @@ umask($oldmask);
 
 /////////////////////////////////////////////////////////////
 
+
+/////////////////////////////////////////////////////////////
+
+// create the db tables if not exists
+
+/////////////////////////////////////////////////////////////
+
 // creating user's table 
 $db->query("CREATE TABLE IF NOT EXISTS accounts
                            ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -215,6 +222,12 @@ $db->query("INSERT INTO view_home
           VALUES ('1','color')
           ");
 
+$db->query("CREATE TABLE IF NOT EXISTS popup
+( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  pagename VARCHAR(255) NOT NULL)");
+
 
 $db->query("CREATE TABLE IF NOT EXISTS files
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -267,12 +280,6 @@ VALUES ('1','Login', '1', '1', '1', 'visual.jpg')
 $db->query("INSERT INTO default_page 
 (id, page_name, header, use_name, use_desc, img) 
 VALUES ('2','Contact', '1', '1', '1', 'visual.jpg')
-");
-
-
-$db->query("INSERT INTO default_page 
-(id, page_name, header, use_name, use_desc, img) 
-VALUES ('3','Gallery', '1', '1', '1', 'visual.jpg')
 ");
 
 $db->query("INSERT INTO menu 
