@@ -107,17 +107,14 @@ if(!is_file("../inc/pages/index.json")){
   fwrite($file_handle, '[{"name":"index"},{"block1_type":"t","block1":"<p>This is your homepage.<\/p><p><br><\/p>","block1_bg":"none","block1_text":"none"}]');
 }
 
+if(!is_file("../inc/pages/contact.json")){
+  $file_handle = fopen("../inc/pages/contact.json", 'w');
+  fwrite($file_handle, '[{ "name": "contact" },{"block1_type": "t","block1": "<p>Your contacts here</p>","block1_bg": "none","block1_text": "none"},{"block2_type": "t","block2": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d90168.54179840878!2d7.600049703634673!3d45.07023883255029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47886d126418be25%3A0x8903f803d69c77bf!2sTorino%20TO!5e0!3m2!1sit!2sit!4v1670422179645!5m2!1sit!2sit\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>","block2_bg": "none","block2_text": "none"},{"block3_type": "t","block3": "ok","block3_bg": "none","block3_text": "none"}]');
+}
+
 $oldmask = umask(0);
 chmod("../inc/pages/index.json",0777);
 umask($oldmask);
-
-
-
-/////////////////////////////////////////////////////////////
-
-// create the db tables if not exists
-
-/////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////
@@ -222,12 +219,6 @@ $db->query("INSERT INTO view_home
           VALUES ('1','color')
           ");
 
-$db->query("CREATE TABLE IF NOT EXISTS popup
-( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  content TEXT NOT NULL,
-  pagename VARCHAR(255) NOT NULL)");
-
 
 $db->query("CREATE TABLE IF NOT EXISTS files
                             ( id INT ( 5 ) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -284,18 +275,18 @@ VALUES ('2','Contact', '1', '1', '1', 'visual.jpg')
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('1','index', '0','0','1','none')
+VALUES ('1','index', '1','1','1','none')
 ");
 
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('2','Login', '1','0','1','none')
+VALUES ('2','Login', '1','2','1','none')
 ");
 
 $db->query("INSERT INTO menu 
 (id, pagename, inmenu,itemorder,parent,childof) 
-VALUES ('3','Contact', '0','0','1','none')
+VALUES ('3','Contact', '0','3','1','none')
 ");
 
 $db->query("CREATE TABLE `password_reset_temp` (
